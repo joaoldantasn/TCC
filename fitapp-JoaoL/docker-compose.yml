@@ -1,0 +1,48 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:8.0.35
+    volumes:
+      - dbase:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: fit-app
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8000:80
+
+volumes:
+  dbase:
+
+#version: '3.1'
+#
+## Este docker foi criado apenas para iniciar um container com o db e pgadmin, ele não inicia a api.
+#
+#services:
+#  db:
+#    image: postgres:latest
+#    volumes:
+#      - pgdata:/var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"
+#    environment:
+#      POSTGRES_DB: fitapp_db
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: ""
+#      POSTGRES_HOST_AUTH_METHOD: trust
+#
+#  pgadmin:
+#    image: dpage/pgadmin4:latest
+#    ports:
+#      - "5050:80"
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: admin@example.com
+#      PGADMIN_DEFAULT_PASSWORD: admin_password
+#
+#volumes:
+#  pgdata:
